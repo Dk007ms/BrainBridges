@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "./toaststyles.css";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -34,12 +36,19 @@ export default function Login() {
     if (password.trim() === "") {
       setPasswordError("Password is required.");
       return;
+    } else {
+      navigate("/Dashboard");
+      toast.success("Logged in Successfully", {
+        position: "top-center",
+        autoClose: 10000,
+        draggable: true,
+        bodyClassName: "toastbody",
+        className: "toastbody",
+        style: {
+          borderRadius: "1rem",
+        },
+      });
     }
-
-    // Additional validation rules can be added here
-
-    // If all validation passes, navigate to "/Dashboard"
-    navigate("/Dashboard");
   };
 
   return (
