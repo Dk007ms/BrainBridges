@@ -1,0 +1,23 @@
+/* Dashboard.css */
+.dashboard-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dashboard-header {
+  text-align: center;
+}
+
+.dashboard-content {
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-section {
+  width: 100%;
+}
+
+.dashboard-footer {
+  margin-top: 20px;
+}

@@ -1,9 +1,77 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const handleInputChange = (field, value) => {
+    if (field === "username") {
+      setUsername(value);
+      setUsernameError(""); // Clear the error when the user starts typing again
+    } else if (field === "password") {
+      setPassword(value);
+      setPasswordError(""); // Clear the error when the user starts typing again
+    }
+  };
+
+  const handleLogin = () => {
+    // Add your login logic here if needed
+    if (username.trim() === "" && password.trim() === "") {
+      setUsernameError("Username is required.");
+      setPasswordError("Password is required.");
+      return;
+    }
+    // Basic form validation
+    if (username.trim() === "") {
+      setUsernameError("Username is required.");
+      return;
+    }
+
+    if (password.trim() === "") {
+      setPasswordError("Password is required.");
+      return;
+    }
+
+    // Additional validation rules can be added here
+
+    // If all validation passes, navigate to "/Dashboard"
+    navigate("/Dashboard");
+  };
+
   return (
-    <div>
-      Pls login
+    <div className="login-form bg-white p-8 max-w-md w-11/12 mx-auto rounded-md shadow-md">
+      <label className="block text-lg text-black mb-4">
+        Username:
+        <input
+          required
+          type="text"
+          value={username}
+          onChange={(e) => handleInputChange("username", e.target.value)}
+          className="input-field border-2 border-gray-300 px-4 py-2 w-full rounded-md focus:outline-none focus:border-blue-500"
+        />
+        {usernameError && <p className="text-red-500 mt-2">{usernameError}</p>}
+      </label>
+      <label className="block text-lg text-black mb-4">
+        Password:
+        <input
+          required
+          type="password"
+          value={password}
+          onChange={(e) => handleInputChange("password", e.target.value)}
+          className="input-field border-2 border-gray-300 px-4 py-2 w-full rounded-md focus:outline-none focus:border-blue-500"
+        />
+        {passwordError && <p className="text-red-500 mt-2">{passwordError}</p>}
+      </label>
+      <button
+        className="submit-btn cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+        onClick={handleLogin}
+      >
+        Login
+      </button>
     </div>
-  )
+  );
 }

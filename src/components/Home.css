@@ -1,0 +1,23 @@
+/* Home.css */
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.home-header {
+  text-align: center;
+}
+
+.home-content {
+  display: flex;
+  justify-content: center;
+}
+
+.home-section {
+  width: 100%;
+}
+
+.home-footer {
+  margin-top: 20px;
+}
