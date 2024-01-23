@@ -18,6 +18,7 @@ import Contacts from "./components/Contacts";
 import "./App.css"; // Import your CSS file
 import { toast } from "react-toastify";
 import "./components/toaststyles.css";
+import myimage from "./assets/ai-brain.png";
 
 function App() {
   const [isActive, setisActive] = useState(false);
@@ -40,13 +41,9 @@ function App() {
   return (
     <div className="App">
       <nav className="navbar">
-        <div className="logo">
-          <img
-            className="logo-img"
-            src="./src/assets/ai-brain.png"
-            alt="logo"
-          />
-        </div>
+        <NavLink className="logo bg-transparent" to="/">
+          <img className="logo-img" src={myimage} alt="logo" />
+        </NavLink>
 
         <div className="nav-links">
           <NavLink className="nav-link" to="/">
