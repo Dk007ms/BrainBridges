@@ -6,6 +6,7 @@ import "./toaststyles.css";
 export default function Signup(props) {
   let isActive = props.isActive;
   let setisActive = props.setisActive;
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -24,7 +25,6 @@ export default function Signup(props) {
       [field]: value,
     }));
 
-    // Clear the error when the user starts typing again
     switch (field) {
       case "firstName":
         setFirstNameError("");
@@ -44,7 +44,6 @@ export default function Signup(props) {
   };
 
   const handleSignup = () => {
-    // Add your signup logic here if needed
     const { firstName, lastName, username, password } = formData;
 
     // Basic form validation
@@ -134,19 +133,6 @@ export default function Signup(props) {
       });
       setisActive((prev) => (prev = true));
       navigate("/Dashboard");
-
-      setTimeout(() => {
-        toast.success("Welcome to Dashboard.", {
-          position: "top-center",
-          autoClose: 2000,
-          draggable: true,
-          bodyClassName: "toastbody",
-          className: "toastbody",
-          style: {
-            borderRadius: "1rem",
-          },
-        });
-      }, 3000);
     }
   };
 

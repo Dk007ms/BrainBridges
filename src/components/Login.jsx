@@ -6,6 +6,7 @@ import "./toaststyles.css";
 export default function Login(props) {
   let isActive = props.isActive;
   let setisActive = props.setisActive;
+
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -40,7 +41,7 @@ export default function Login(props) {
       return;
     }
     // Basic form validation
-    if (username.trim() === "") {
+    else if (username.trim() === "") {
       setUsernameError("Username is required.");
       toast.error("Username is required.", {
         position: "top-center",
@@ -53,9 +54,7 @@ export default function Login(props) {
         },
       });
       return;
-    }
-
-    if (password.trim() === "") {
+    } else if (password.trim() === "") {
       setPasswordError("Password is required.");
       toast.error("Password is required.", {
         position: "top-center",
@@ -79,20 +78,9 @@ export default function Login(props) {
           borderRadius: "1rem",
         },
       });
+
       setisActive((prev) => (prev = true));
       navigate("/Dashboard");
-      setTimeout(() => {
-        toast.success("Welcome to Dashboard.", {
-          position: "top-center",
-          autoClose: 2000,
-          draggable: true,
-          bodyClassName: "toastbody",
-          className: "toastbody",
-          style: {
-            borderRadius: "1rem",
-          },
-        });
-      }, 2000);
     }
   };
 

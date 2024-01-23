@@ -23,9 +23,7 @@ function App() {
   const [isActive, setisActive] = useState(false);
 
   const handleSignout = () => {
-    // Your signout logic here
     toast.dismiss();
-    // Show toast on successful signout
 
     toast("👋 Comeback Soon !", {
       position: "top-center",
@@ -36,8 +34,6 @@ function App() {
         borderRadius: "1rem",
       },
     });
-
-    // Reset any state or perform additional signout-related actions
     setisActive(false);
   };
 
