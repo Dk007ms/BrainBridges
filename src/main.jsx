@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
-      <ToastContainer bodyClassName="toastbody" />
+      <ToastContainer bodyClassName="toastbody" className="toastbody" />
     </BrowserRouter>
   </React.StrictMode>
 );

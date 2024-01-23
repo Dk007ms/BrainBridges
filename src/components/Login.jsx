@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./toaststyles.css";
 
-export default function Login() {
+export default function Login(props) {
+  let isActive = props.isActive;
+  let setisActive = props.setisActive;
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,22 +27,9 @@ export default function Login() {
     if (username.trim() === "" && password.trim() === "") {
       setUsernameError("Username is required.");
       setPasswordError("Password is required.");
-      return;
-    }
-    // Basic form validation
-    if (username.trim() === "") {
-      setUsernameError("Username is required.");
-      return;
-    }
-
-    if (password.trim() === "") {
-      setPasswordError("Password is required.");
-      return;
-    } else {
-      navigate("/Dashboard");
-      toast.success("Logged in Successfully", {
+      toast.error("Username and Password missing.", {
         position: "top-center",
-        autoClose: 10000,
+        autoClose: 2000,
         draggable: true,
         bodyClassName: "toastbody",
         className: "toastbody",
@@ -48,6 +37,62 @@ export default function Login() {
           borderRadius: "1rem",
         },
       });
+      return;
+    }
+    // Basic form validation
+    if (username.trim() === "") {
+      setUsernameError("Username is required.");
+      toast.error("Username is required.", {
+        position: "top-center",
+        autoClose: 2000,
+        draggable: true,
+        bodyClassName: "toastbody",
+        className: "toastbody",
+        style: {
+          borderRadius: "1rem",
+        },
+      });
+      return;
+    }
+
+    if (password.trim() === "") {
+      setPasswordError("Password is required.");
+      toast.error("Password is required.", {
+        position: "top-center",
+        autoClose: 2000,
+        draggable: true,
+        bodyClassName: "toastbody",
+        className: "toastbody",
+        style: {
+          borderRadius: "1rem",
+        },
+      });
+      return;
+    } else {
+      toast.success("Logged in Successfully", {
+        position: "top-center",
+        autoClose: 2000,
+        draggable: true,
+        bodyClassName: "toastbody",
+        className: "toastbody",
+        style: {
+          borderRadius: "1rem",
+        },
+      });
+      setisActive((prev) => (prev = true));
+      navigate("/Dashboard");
+      setTimeout(() => {
+        toast.success("Welcome to Dashboard.", {
+          position: "top-center",
+          autoClose: 2000,
+          draggable: true,
+          bodyClassName: "toastbody",
+          className: "toastbody",
+          style: {
+            borderRadius: "1rem",
+          },
+        });
+      }, 2000);
     }
   };
 

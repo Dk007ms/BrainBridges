@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "./toaststyles.css";
 
-export default function Signup() {
+export default function Signup(props) {
+  let isActive = props.isActive;
+  let setisActive = props.setisActive;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -54,26 +58,96 @@ export default function Signup() {
       setLastNameError("Last Name is required.");
       setUsernameError("Username is required.");
       setPasswordError("Password is required.");
+      toast.error("Please fill required fields", {
+        position: "top-center",
+        autoClose: 2000,
+        draggable: true,
+        bodyClassName: "toastbody",
+        className: "toastbody",
+        style: {
+          borderRadius: "1rem",
+        },
+      });
       return;
     } else if (firstName.trim() === "") {
       setFirstNameError("First Name is required.");
+      toast.error("Firstname is missing.", {
+        position: "top-center",
+        autoClose: 2000,
+        draggable: true,
+        bodyClassName: "toastbody",
+        className: "toastbody",
+        style: {
+          borderRadius: "1rem",
+        },
+      });
       return;
     } else if (lastName.trim() === "") {
       setLastNameError("Last Name is required.");
+      toast.error("Lastname is missing.", {
+        position: "top-center",
+        autoClose: 2000,
+        draggable: true,
+        bodyClassName: "toastbody",
+        className: "toastbody",
+        style: {
+          borderRadius: "1rem",
+        },
+      });
       return;
     } else if (username.trim() === "") {
       setUsernameError("Username is required.");
+      toast.error("Username is missing.", {
+        position: "top-center",
+        autoClose: 2000,
+        draggable: true,
+        bodyClassName: "toastbody",
+        className: "toastbody",
+        style: {
+          borderRadius: "1rem",
+        },
+      });
       return;
     } else if (password.trim() === "") {
       setPasswordError("Password is required.");
+      toast.error("Password is missing.", {
+        position: "top-center",
+        autoClose: 2000,
+        draggable: true,
+        bodyClassName: "toastbody",
+        className: "toastbody",
+        style: {
+          borderRadius: "1rem",
+        },
+      });
       return;
+    } else {
+      toast.success("Signed up Successfully.", {
+        position: "top-center",
+        autoClose: 2000,
+        draggable: true,
+        bodyClassName: "toastbody",
+        className: "toastbody",
+        style: {
+          borderRadius: "1rem",
+        },
+      });
+      setisActive((prev) => (prev = true));
+      navigate("/Dashboard");
+
+      setTimeout(() => {
+        toast.success("Welcome to Dashboard.", {
+          position: "top-center",
+          autoClose: 2000,
+          draggable: true,
+          bodyClassName: "toastbody",
+          className: "toastbody",
+          style: {
+            borderRadius: "1rem",
+          },
+        });
+      }, 3000);
     }
-
-    // Additional validation rules can be added here
-
-    // If all validation passes, navigate to "/Dashboard" or any other route
-    // You can replace "/Dashboard" with the route you want to navigate to after signup
-    navigate("/Dashboard");
   };
 
   return (
